@@ -6,7 +6,8 @@ cask 'zig' do
   name 'Zig'
   homepage 'https://ziglang.org/'
 
-  conflicts_with formula: 'zig' # conflicts_with formula: is not yet functional
+  conflicts_with formula: 'zig', # conflicts_with formula: is not yet functional
+                 cask: 'zig@master'
 
   binary "zig-macos-x86_64-#{version}/zig"
 end
