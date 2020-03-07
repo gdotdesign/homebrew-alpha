@@ -15,7 +15,7 @@ cask 'zig' do
   homepage 'https://ziglang.org/'
 
   conflicts_with formula: 'zig',
-                 cask:    'zig@master'
+                 cask:    'zig-master'
   depends_on formula: 'llvm'
 
   if OS.mac?

@@ -24,7 +24,7 @@ url = releases['master']["#{cpu}-#{os}"]['tarball']
 m = %r{-((?:\d+\.)*\d+\.\d+\+[a-fA-F0-9]{9})}.match(url)
 version = m.captures.first
 
-cask 'zig@master' do
+cask 'zig-master' do
   version version
   sha256 sha256
 
