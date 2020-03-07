@@ -22,10 +22,10 @@ sha256 = releases['master']["#{cpu}-#{os}"]['shasum']
 url = releases['master']["#{cpu}-#{os}"]['tarball']
 # e.g. zig-macos-x86_64-0.5.0+d1243bf27
 m = %r{-((?:\d+\.)*\d+\.\d+\+[a-fA-F0-9]{9})}.match(url)
-version = m.captures.first
+v = m.captures.first
 
 cask 'zig-master' do
-  version version
+  version :latest
   sha256 sha256
 
   url url
@@ -36,5 +36,5 @@ cask 'zig-master' do
                  cask:    'zig'
   depends_on formula: 'llvm'
 
-  binary "zig-#{os}-#{cpu}-#{version}/zig"
+  binary "zig-#{os}-#{cpu}-#{v}/zig"
 end
