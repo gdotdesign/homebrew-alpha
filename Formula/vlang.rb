@@ -1,6 +1,18 @@
+VERSION = "0.1.24".freeze
+
 class Vlang < Formula
   desc "Simple, fast, safe, compiled language"
   homepage "https://vlang.io/"
+
+  stable do
+    if OS.mac?
+      url "https://github.com/vlang/v/releases/download/#{VERSION}/v_macos.zip"
+      sha256 "9b5a98aa82812b9dbf28e19d1199fdc6799098378ccec98f217d935c7fbd6b1d"
+    elsif OS.linux?
+      url "https://github.com/vlang/v/releases/download/#{VERSION}/v_linux.zip"
+      sha256 "b8dff67f872562ec6ffd9031e3f540e1c06b3e63acd1e1f1032e3dbac94323dd"
+    end
+  end
 
   head do
     url "https://github.com/vlang/v.git"
@@ -11,11 +23,13 @@ class Vlang < Formula
   end
 
   def install
-    resource("vc").stage do
-      system ENV.cc, "-std=gnu11", "-w", "-o", "v", "v.c", "-lm"
-      libexec.install "v"
+    unless build.stable?
+      resource("vc").stage do
+        system ENV.cc, "-std=gnu11", "-w", "-o", "v", "v.c", "-lm"
+        libexec.install "v"
+      end
     end
-    libexec.install "cmd", "examples", "thirdparty", "vlib"
+    libexec.install Dir["*"]
     bin.install_symlink libexec/"v"
   end
 
