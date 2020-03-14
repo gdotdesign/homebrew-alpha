@@ -1,7 +1,7 @@
 VERSION = "0.1.24".freeze
 
 class Vlang < Formula
-  desc "Simple, fast, safe, compiled language"
+  desc "Simple, fast, safe, compiled programming language"
   homepage "https://vlang.io/"
 
   stable do
