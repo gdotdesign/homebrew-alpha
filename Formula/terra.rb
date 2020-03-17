@@ -9,21 +9,21 @@ class Terra < Formula
   stable do
     if OS.mac?
       url "https://github.com/terralang/terra/releases/download/release-#{VERSION}/terra-OSX-x86_64-#{REVISION_SHORT}.zip"
+      version VERSION
       sha256 "0dee25df54193d9368e0e82da0318efa2ffbf901a7ca4e7717ce699e9d929f5f"
     elsif OS.linux?
       if Hardware::CPU.intel?
         url "https://github.com/terralang/terra/releases/download/release-#{VERSION}/terra-Linux-x86_64-#{REVISION_SHORT}.zip"
+        version VERSION
         sha256 "62bee805fd1b162fb928204761a183a045253b60f8d74f2a8e68cc2afbb45ab2"
       end
     end
-    version VERSION
   end
 
   devel do
     url "https://github.com/terralang/terra.git",
         :tag      => "release-#{VERSION}",
         :revision => REVISION
-    version VERSION
   end
 
   head do
@@ -35,15 +35,10 @@ class Terra < Formula
       url "https://github.com/SeekingMeaning/terra/raw/b54d94e/cmake/Modules/GetLuaJIT.cmake"
       sha256 "c0e7400a5154ff0194679e0c7a8dd2dacadf80a2bcd0d6a8e24452245a39b8e9"
     end
-
-    depends_on "cmake" => :build
   end
 
-  if build.head?
-    depends_on "llvm@9"
-  else
-    depends_on "llvm@6"
-  end
+  depends_on "cmake" => :build unless build.stable?
+  depends_on build.head? ? "llvm@9" : "llvm@6"
   depends_on "luajit"
 
   def install
