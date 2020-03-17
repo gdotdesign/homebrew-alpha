@@ -21,7 +21,7 @@ class Qbe < Formula
         call $printf(l $fmt, w %r, ...)    # Show the result
         ret 0
       }
-      data $fmt = { b "One and one make %d!\n", b 0 }
+      data $fmt = { b "One and one make %d!\\n", b 0 }
     EOS
     system "#{bin}/qbe", "-o", "test.s", "test.ssa"
     system ENV.cc, "-o", "test", "test.s"
