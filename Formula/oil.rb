@@ -1,8 +1,8 @@
 class Oil < Formula
   desc "New Unix shell"
   homepage "https://www.oilshell.org/"
-  url "https://www.oilshell.org/download/oil-0.8.pre2.tar.xz"
-  sha256 "671dccc73804c37b709d1cc203202957c631c8173052280083dad389514ed79f"
+  url "https://www.oilshell.org/download/oil-0.8.pre3.tar.xz"
+  sha256 "70ddfad74dc55b3bbf2c6a5832bd9de5c38d759e4b699b1acad42cf5b07d3362"
 
   def install
     system "./configure", "--prefix=#{prefix}"
